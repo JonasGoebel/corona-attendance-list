@@ -23,49 +23,37 @@
                                 <a href="/#/background">Hintergrund</a>
                                 <br />
                                 <br />
-                                <a href="/#/instructions">Anleitung</a>
+                                <!-- <a href="/#/instructions">Anleitung</a> -->
                             </div>
                             <form role="form">
                                 <base-input alternative
                                             class="mb-3"
                                             placeholder="Vorname"
-                                            addon-left-icon="ni ni-hat-3"
+                                            addon-left-icon="ni ni-circle-08"
                                             v-model="firstName">
                                 </base-input>
                                 <base-input alternative
                                             class="mb-3"
                                             placeholder="Nachname"
-                                            addon-left-icon="ni ni-hat-3"
+                                            addon-left-icon="ni ni-circle-08"
                                             v-model="lastName">
-                                </base-input>
-                                <base-input alternative
-                                            class="mb-3"
-                                            placeholder="Email"
-                                            addon-left-icon="ni ni-email-83"
-                                            v-model="email">
                                 </base-input>
                                  <base-input alternative
                                             type="phone"
                                             placeholder="Telefon"
-                                            addon-left-icon="ni ni-lock-circle-open"
+                                            addon-left-icon="ni ni-mobile-button"
                                             v-model="phone">
                                 </base-input>
                                 <base-input alternative
                                             type="street"
-                                            placeholder="Straße"
-                                            addon-left-icon="ni ni-lock-circle-open"
+                                            placeholder="Straße, Hausnummer"
+                                            addon-left-icon="ni ni-building"
                                             v-model="street">
-                                </base-input>
-                                <base-input alternative
-                                            type="homeNr"
-                                            placeholder="Hausnummer"
-                                            addon-left-icon="ni ni-lock-circle-open"
-                                            v-model="homeNr">
                                 </base-input>
                                 <div class="text-center">
                                     <base-button type="success" class="my-4" v-bind:class="{ 'btn-outline-success': !isHere }" v-on:click="isHere=1">Kommen</base-button>
                                     <base-button type="danger" class="my-4"  v-bind:class="{ 'btn-outline-danger': isHere }" v-on:click="isHere=0">Gehen</base-button>
-                                    <p>{{ firstName }} {{ lastName }} ist am {{ date }} um {{ time }} {{ (isHere == 1 ? 'an der Weiersbach eingetroffen' : 'von der Weiersach gegangen') }}.</p>
+                                    <p>{{ firstName }} {{ lastName }} ist am {{ date }} um {{ time }} {{ (isHere == 1 ? 'an der Weiersbach eingetroffen' : 'von der Weiersbach gegangen') }}.</p>
                                     <base-button type="primary" class="my-12" v-on:click="sendForm()">Senden</base-button>
                                 </div>
                                 <br />
@@ -83,15 +71,16 @@
     </section>
 </template>
 <script>
+import axios from 'axios';
+import Axios from 'axios';
+
 export default {
     data: () => ({
         // user controlled
         firstName: '',
         lastName: '',
-        email: '',
         phone: '',
         street: '',
-        homeNr: '',
         isHere: true,
 
         // auto generated
@@ -103,25 +92,22 @@ export default {
             var errorMessage = '';
             if(this.firstName == '') errorMessage += 'Vorname ';
             if(this.lastName == '') errorMessage += 'Nachname ';
-            if(this.email == '') errorMessage += 'Email ';
             if(this.phone == '') errorMessage += 'Telefon ';
             if(this.street == '') errorMessage += 'Straße ';
-            if(this.homeNr == '') errorMessage += 'Hausnummer';
-
-            console.log(errorMessage);
 
             if(errorMessage != '') {
                 alert('Es wurden nicht alle Felder ausgefüllt: ' + errorMessage);
-                // return;
+                return;
             }
             
             // save values for later use
             this.saveValuesToStorage();
-            
 
-            /**
-             * make http request
-             */
+            // save the event into storage
+            this.addEventToStorage();
+
+            // try to send all stored events to the server
+            this.sendEventsToServer();
         },
 
         /**
@@ -130,10 +116,8 @@ export default {
         loadValuesFromStorage() {
             if (localStorage.getItem("firstName") !== null) this.firstName = localStorage.firstName;
             if (localStorage.getItem("lastName")  !== null) this.lastName = localStorage.lastName;
-            if (localStorage.getItem("email")     !== null) this.email = localStorage.email;
             if (localStorage.getItem("phone")     !== null) this.phone = localStorage.phone;
             if (localStorage.getItem("street")    !== null) this.street = localStorage.street;
-            if (localStorage.getItem("homeNr")    !== null) this.homeNr = localStorage.homeNr;
         },
 
         /**
@@ -142,10 +126,73 @@ export default {
         saveValuesToStorage() {
             localStorage.firstName = this.firstName;
             localStorage.lastName = this.lastName;
-            localStorage.email = this.email;
             localStorage.phone = this.phone;
             localStorage.street = this.street;
-            localStorage.homeNr = this.homeNr;
+        },
+
+        /**
+         * all events are saved before we'll send them to the server
+         * the event storage will be cleared after all events are sent to the server
+         * in this way, the event(s) won't be lost if the user has no internet connection
+         */
+        addEventToStorage() {
+
+            // create a json object with our event data
+            const event = {
+                'firstName' : this.firstName,
+                'lastName': this.lastName,
+                'phone': this.phone,
+                'street': this.street,
+                'timestamp': this.timestamp,
+                'isHere': this.isHere
+            }
+
+            // load all events
+            if (localStorage.getItem("events") === null) localStorage.events = JSON.stringify([]);
+            var events = JSON.parse(localStorage.events);
+
+            // add the created event to the events list
+            events.push(event);
+
+            // store them in localStorage as JSON string
+            const jsonEvents = JSON.stringify(events);
+            localStorage.events = jsonEvents;
+        },
+
+        /**
+         * try to send all events stored in localStorage to the server
+         * delete the events if they are sent successfully
+         */
+        sendEventsToServer() {
+
+            // do nothing if there's no event
+            if (localStorage.getItem("events") === null) return;
+
+            // load events from localStroage
+            var events = JSON.parse(localStorage.events);
+
+            const serverURL = process.env.VUE_APP_SERVER_URL;
+
+            const errorMsg = `Bei der Datenübertragung ist ein Fehler aufgetreten.
+Bitte probieren Sie es später noch einmal.
+
+Die Daten bleiben gespeichert und werden automatisch beim nächsten Seitenaufruf erneut gesendet.`;
+
+            // send all saved events to server
+            axios.post(serverURL + '/api/events', {
+                events
+            }).then(response => {
+                if(response.data.status == "success") {
+
+                    // events are now on the server. clear saved event storage
+                    localStorage.events = JSON.stringify([]);
+                    alert(response.data.message);
+
+                } else alert(errorMsg);
+
+            }).catch(error => {
+                alert(errorMsg);
+            });
         }
     },
 
@@ -153,16 +200,23 @@ export default {
 
         this.loadValuesFromStorage();
 
+        // make it possible to add time in the default Date() function
+        Date.prototype.addHours = function(h) {
+            this.setTime(this.getTime() + (h*60*60*1000));
+            return this;
+        }
+
         // set the current time as formatted timestamp
         var date;
         date = new Date();
 
         // add two hours because we're living in germany (Date() is UTC)
-        const hours = date.getUTCHours() + 2;
+        date.addHours(2);
+
         const timestamp = date.getUTCFullYear() + '-' +
             ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
             ('00' + date.getUTCDate()).slice(-2) + ' ' + 
-            ('00' + hours).slice(-2) + ':' + 
+            ('00' + date.getUTCHours()).slice(-2) + ':' + 
             ('00' + date.getUTCMinutes()).slice(-2) + ':' + 
             ('00' + date.getUTCSeconds()).slice(-2);
         this.timestamp = timestamp;
@@ -170,10 +224,10 @@ export default {
 
     computed: {
         date: function () {
-            // Split timestamp into [ Y, M, D, h, m, s ]
+            // split timestamp into [ Y, M, D, h, m, s ]
             var t = this.timestamp.split(/[- :]/);
 
-            // Apply each element to the Date function
+            // apply each element to the Date function
             const d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
             const months = [
                 'Janurar',
@@ -195,10 +249,10 @@ export default {
         },
 
         time: function () {
-            // Split timestamp into [ Y, M, D, h, m, s ]
+            // split timestamp into [ Y, M, D, h, m, s ]
             var t = this.timestamp.split(/[- :]/);
 
-            // Apply each element to the Date function
+            // apply each element to the Date function
             const d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
 
             const timestring = d.getUTCHours() + ':' + d.getUTCMinutes();
