@@ -166,7 +166,7 @@ export default {
         sendEventsToServer() {
 
             // do nothing if there's no event
-            if (localStorage.getItem("events") === null) return;
+            if (localStorage.getItem("events") === null || JSON.parse(localStorage.getItem("events")).length < 1) return;
 
             /**
              * load events from localStroage
@@ -176,10 +176,10 @@ export default {
 
             const serverURL = process.env.VUE_APP_SERVER_URL;
 
-            const errorMsg = `Bei der Datenübertragung ist ein Fehler aufgetreten.
+            const errorMsg = `Der Eintrag konnte nicht gesendet werden.
 Bitte probieren Sie es später noch einmal.
 
-Die Daten bleiben gespeichert und werden automatisch beim nächsten Seitenaufruf erneut gesendet.`;
+Der Eintrag wird automatisch beim nächsten Seitenaufruf erneut gesendet.`;
 
             // send all saved events to server
             axios.post(serverURL + '/api/events', {
@@ -201,7 +201,11 @@ Die Daten bleiben gespeichert und werden automatisch beim nächsten Seitenaufruf
 
     mounted() {
 
+        // load values into form
         this.loadValuesFromStorage();
+
+        // send saved events
+        this.sendEventsToServer();
 
         // make it possible to add time in the default Date() function
         Date.prototype.addHours = function(h) {
