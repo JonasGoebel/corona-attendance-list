@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        labels:
+          - "traefik.http.routers.spotifyinfo.entrypoints=websecure"
+          - "traefik.http.routers.spotifyinfo.rule=Host(`weiersbach.goebel.app`)"
+          - "traefik.http.routers.spotifyinfo.priority=0"
+          - "traefik.http.routers.spotifyinfo.tls=true"
+          - "traefik.http.routers.spotifyinfo.tls.certresolver=goebel.app"
