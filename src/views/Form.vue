@@ -168,8 +168,11 @@ export default {
             // do nothing if there's no event
             if (localStorage.getItem("events") === null) return;
 
-            // load events from localStroage
-            var events = JSON.parse(localStorage.events);
+            /**
+             * load events from localStroage
+             * keep the JSON object as string
+             */
+            var events = localStorage.events;
 
             const serverURL = process.env.VUE_APP_SERVER_URL;
 
