@@ -23,7 +23,7 @@
                                 <a href="/#/background">Hintergrund</a>
                                 <br />
                                 <br />
-                                <!-- <a href="/#/instructions">Anleitung</a> -->
+                                <a href="/#/instructions">Anleitung</a>
                             </div>
                             <form role="form">
                                 <base-input alternative
@@ -88,6 +88,14 @@ export default {
     }),
 
     methods: {
+
+        readInstructionsOnFirstVisit() {
+            if(localStorage.getItem("instructionsRead") === null) {
+                // this.$route.push('/instructions');
+                this.$router.push('instructions');
+            }
+        },
+
         sendForm: function() {
             var errorMessage = '';
             if(this.firstName == '') errorMessage += 'Vorname ';
@@ -200,6 +208,9 @@ Der Eintrag wird automatisch beim nächsten Seitenaufruf erneut gesendet.`;
     },
 
     mounted() {
+
+        // go to instructions on first visit
+        this.readInstructionsOnFirstVisit()
 
         // load values into form
         this.loadValuesFromStorage();
