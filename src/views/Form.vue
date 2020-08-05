@@ -192,7 +192,7 @@ Der Eintrag wird automatisch beim nächsten Seitenaufruf erneut gesendet.`;
             // send all saved events to server
             axios.post(serverURL + '/api/events', {
                 events
-            }).then(response => {
+            }, { timeout: 10000 }).then(response => {
                 if(response.data.status == "success") {
 
                     // events are now on the server. clear saved event storage
