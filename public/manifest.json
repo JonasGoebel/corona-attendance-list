@@ -1,0 +1,15 @@
+{
+    "name": "Weiersbach",
+    "short_name": "Weiersbach",
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#6875e7",
+    "background_color": "#fff",
+    "description": "Time-Tracking App for solving the COVID-19 health checks.",
+    "icons": [{
+        "src": "img/splash.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }],
+    "related_applications": []
+  }
