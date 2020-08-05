@@ -129,7 +129,7 @@
                     <div class="col-lg-4">
                         <icon name="ni ni-settings" size="lg" gradient="white" shadow round color="primary"></icon>
                         <h5 class="text-white mt-3">Administration</h5>
-                        <p class="text-white mt-3">Weiersbach-Administrations-Login: <a href="https://weihersbachapi.goebel.app">https://weihersbachapi.goebel.app</a></p>
+                        <p class="text-white mt-3">Weiersbach-Administrations-Login: <a href="https://weiersbachapi.goebel.app">https://weiersbachapi.goebel.app</a></p>
                     </div>
 
                     <div class="col-lg-4">
