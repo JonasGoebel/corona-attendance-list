@@ -16,10 +16,17 @@
 
 */
 import Vue from "vue";
+import * as Sentry from '@sentry/browser';
+import { Vue as VueIntegration } from '@sentry/integrations';
 import App from "./App.vue";
 import router from "./router";
 import Argon from "./plugins/argon-kit";
 import './registerServiceWorker'
+
+Sentry.init({
+  dsn: 'https://cd2b6d78f42648c9ad427d688d3c8a8d@o423568.ingest.sentry.io/5378643',
+  integrations: [new VueIntegration({Vue, attachProps: true})],
+});
 
 Vue.config.productionTip = false;
 Vue.use(Argon);

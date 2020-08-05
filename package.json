@@ -11,6 +11,8 @@
     "@capacitor/android": "^2.4.0",
     "@capacitor/cli": "^2.4.0",
     "@capacitor/core": "^2.4.0",
+    "@sentry/browser": "^5.20.1",
+    "@sentry/integrations": "^5.20.1",
     "axios": "^0.19.2",
     "bootstrap-vue": "^2.0.4",
     "flatpickr": "^4.5.1",
