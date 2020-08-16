@@ -1,11 +1,12 @@
-# Weiersbach-Corona-App
+# Corona-Attendance-List
 
 ## Basic
-This project is split in two parts - frontend/APP and backend/API
+This project is split in two parts - frontend/APP and backend/API  
+This is the frontend/App-Version
 
 ## Installation
 
-`git clone https://git.goebel.app/Jonas/weiersbach.git`
+`git clone https://github.com/JonasGoebel/corona-attendance-list.git`
 
 `cd weiersbach`
 
