@@ -1,6 +1,6 @@
 {
-  "appId": "app.goebel.weiersbach",
-  "appName": "Weiersbach",
+  "appId": "app.goebel.corona",
+  "appName": "CoronaAttendanceList",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "dist",
