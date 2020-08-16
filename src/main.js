@@ -24,7 +24,7 @@ import Argon from "./plugins/argon-kit";
 import './registerServiceWorker'
 
 Sentry.init({
-  dsn: 'https://cd2b6d78f42648c9ad427d688d3c8a8d@o423568.ingest.sentry.io/5378643',
+  dsn: process.env.VUE_APP_SENTRY_URL,
   integrations: [new VueIntegration({Vue, attachProps: true})],
 });
 
