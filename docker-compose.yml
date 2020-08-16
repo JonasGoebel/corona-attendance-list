@@ -6,8 +6,8 @@ services:
             context: .
             dockerfile: Dockerfile
         labels:
-          - "traefik.http.routers.weiersbach.entrypoints=websecure"
-          - "traefik.http.routers.weiersbach.rule=Host(`weiersbach.goebel.app`)"
-          - "traefik.http.routers.weiersbach.priority=0"
-          - "traefik.http.routers.weiersbach.tls=true"
-          - "traefik.http.routers.weiersbach.tls.certresolver=goebel.app"
+          - "traefik.http.routers.coronaClient.entrypoints=websecure"
+          - "traefik.http.routers.coronaClient.rule=Host(`corona.goebel.app`)"
+          - "traefik.http.routers.coronaClient.priority=0"
+          - "traefik.http.routers.coronaClient.tls=true"
+          - "traefik.http.routers.coronaClient.tls.certresolver=goebel.app"
