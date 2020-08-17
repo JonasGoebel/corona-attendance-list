@@ -18,17 +18,15 @@
                     <div class="col px-0">
                         <div class="row">
                             <div class="col-lg-6">
-                                <h1 class="display-3  text-white">Hintergrund</h1>
-                                <p class="lead text-white">Durch COVID-19 ist das Jahr 2020 zu einem besonderen Jahr geworden. Deshalb können wir auch unsere geliebte Weiersbach nur unter angepassten Bedingungen, wie unter anderem einem Hygienekonzept stattfinden lassen.</p>
-                                <p class="lead text-white">Hierzu zählt auch das Mitschreiben, wer zu welcher Zeit das Weiersbach-Gelände betreten oder verlassen hat.</p>
-                                <p class="lead text-white">Um dies einfacher zu gestalten, kann man sich neben dem Anmeldezettel auch über die App als "anwesend" und "nicht mehr anwesend" eintragen.</p>
+                                <h1 class="display-3  text-white">Background</h1>
+                                <p class="lead text-white">This is the digitalized version of the Corona-Attendance list.</p>
                                 <div class="btn-wrapper">
                                     <base-button tag="a"
                                                  href="/"
                                                  class="mb-3 mb-sm-0"
                                                  type="info"
                                                  >
-                                        zurück
+                                        back to main page
                                     </base-button>
                                 </div>
                             </div>
@@ -47,10 +45,10 @@
                                 <card class="border-0" hover shadow body-classes="py-5">
                                     <icon name="ni ni-check-bold" type="primary" rounded class="mb-4">
                                     </icon>
-                                    <h6 class="text-primary text-uppercase">Datenschutz</h6>
-                                    <p class="description mt-3">Die Datenschutzbestimmungen können <a href="/#/datenschutz">hier</a> eingelesen werden.</p>
-                                    <base-button tag="a" href="/#/datenschutz" type="primary" class="mt-4">
-                                        Datenschutzbestimmungen
+                                    <h6 class="text-primary text-uppercase">Privacy Policy</h6>
+                                    <p class="description mt-3">You can read the privacy policy <a href="/#/privacy">here</a>.</p>
+                                    <base-button tag="a" href="/#/privacy" type="primary" class="mt-4">
+                                        Privacy Policy
                                     </base-button>
                                 </card>
                             </div>
