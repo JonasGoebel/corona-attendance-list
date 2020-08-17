@@ -8,7 +8,7 @@ This is the frontend/App-Version
 
 `git clone https://github.com/JonasGoebel/corona-attendance-list.git`
 
-`cd weiersbach`
+`cd corona-attendance-list`
 
 `cp .env.example .env`
 

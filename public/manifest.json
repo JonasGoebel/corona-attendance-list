@@ -1,11 +1,11 @@
 {
-    "name": "Weiersbach",
-    "short_name": "Weiersbach",
+    "name": "CoronaAttendanceList",
+    "short_name": "CoronaAttendanceList",
     "start_url": ".",
     "display": "standalone",
     "theme_color": "#6875e7",
     "background_color": "#fff",
-    "description": "Time-Tracking App for solving the COVID-19 health checks.",
+    "description": "Time-Tracking App for solving the COVID-19 health checks. The digitalized attendance-list for COVID-19",
     "icons": [{
         "src": "img/splash.png",
         "sizes": "512x512",
