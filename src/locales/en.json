@@ -1,0 +1,14 @@
+{
+    "form": {
+      "enterPersonalData": "Please enter your personal data:",
+      "background": "Why this app was made",
+      "instructions": "Instructions",
+      "arrived": "has arrived to",
+      "left": "left",
+      "arrive": "arrive",
+      "leave": "leave",
+      "eventPreview": "{firstName} {lastName} {eventArrivedOrLeave} the event at {date} on {time}.",
+      "sendEvent": "send event",
+      "errCouldNotBeSent": "The event could not be sent.\nPlease try again later.\n\nThe event will be automatically sent on the next app start."
+  }
+}

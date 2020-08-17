@@ -1,0 +1,14 @@
+{
+    "form": {
+      "enterPersonalData": "Bitte geben Sie Ihre persöhnlichen Daten ein:",
+      "background": "Hintergrund zur App",
+      "instructions": "Anleitung",
+      "arrived": "eingetroffen",
+      "left": "gegangen",
+      "arrive": "Kommen",
+      "leave": "Gehen",
+      "eventPreview": "{firstName} {lastName} ist am {date} um {time} {eventArrivedOrLeave}.",
+      "sendEvent": "send event",
+      "errCouldNotBeSent": "Der Eintrag konnte nicht gesendet werden.\nBitte probieren Sie es später noch einmal.\n\nDer Eintrag wird automatisch beim nächsten Seitenaufruf erneut gesendet."
+  }
+}

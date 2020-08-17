@@ -19,11 +19,11 @@
                           class="border-0">
                         <template>
                             <div class="text-center text-muted mb-4">
-                                <p>Bitte geben Sie Ihre perönlichen Daten an:</p>
-                                <a href="/#/background">Hintergrund</a>
+                                <p>{{ $t("form.enterPersonalData") }}</p>
+                                <a href="/#/background">{{ $t("form.background") }}</a>
                                 <br />
                                 <br />
-                                <a href="/#/instructions">Anleitung</a>
+                                <a href="/#/instructions">{{ $t("form.instructions") }}</a>
                             </div>
                             <form role="form">
                                 <base-input alternative
@@ -51,16 +51,18 @@
                                             v-model="street">
                                 </base-input>
                                 <div class="text-center">
-                                    <base-button type="success" class="my-4" v-bind:class="{ 'btn-outline-success': !isHere }" v-on:click="isHere=1">Kommen</base-button>
-                                    <base-button type="danger" class="my-4"  v-bind:class="{ 'btn-outline-danger': isHere }" v-on:click="isHere=0">Gehen</base-button>
-                                    <p>{{ firstName }} {{ lastName }} ist am {{ date }} um {{ time }} {{ (isHere == 1 ? 'an der Weiersbach eingetroffen' : 'von der Weiersbach gegangen') }}.</p>
-                                    <base-button type="primary" class="my-12" v-on:click="sendForm()">Senden</base-button>
+                                    <base-button type="success" class="my-4" v-bind:class="{ 'btn-outline-success': !isHere }" v-on:click="isHere=1">{{ $t("form.arrive") }}</base-button>
+                                    <base-button type="danger" class="my-4"  v-bind:class="{ 'btn-outline-danger': isHere }" v-on:click="isHere=0">{{ $t("form.leave") }}</base-button>
+                                    <!-- <p>{{ }} {{ lastName }} {{ (isHere == 1 ? 'arrived' : 'left') }} the event at {{ date }} on {{ time }}.</p> -->
+
+                                    <p>{{ $t("form.eventPreview", { firstName, lastName, date, time, eventArrivedOrLeave }) }}</p>
+
+                                    <base-button type="primary" class="my-12" v-on:click="sendForm()">{{ $t("form.sendEvent") }}</base-button>
                                 </div>
                                 <br />
                                 <br />
-                                <span>Durch Benutzung der Seite stimme ich der 
-                                    <a href="/#/datenschutz">Datenschutzerklärung</a>
-                                    zu.
+                                <span>While using this page I agree to the 
+                                    <a href="/#/privacy">privacy policy</a>.
                                 </span>
                             </form>
                         </template>
@@ -70,11 +72,14 @@
         </div>
     </section>
 </template>
+
 <script>
 import axios from 'axios';
 import Axios from 'axios';
 
 export default {
+    name: 'Form',
+
     data: () => ({
         // user controlled
         firstName: '',
@@ -184,10 +189,7 @@ export default {
 
             const serverURL = process.env.VUE_APP_SERVER_URL;
 
-            const errorMsg = `Der Eintrag konnte nicht gesendet werden.
-Bitte probieren Sie es später noch einmal.
-
-Der Eintrag wird automatisch beim nächsten Seitenaufruf erneut gesendet.`;
+            const errorMsg = this.$t('form.errCouldNotBeSent');
 
             // send all saved events to server
             axios.post(serverURL + '/api/events', {
@@ -275,6 +277,14 @@ Der Eintrag wird automatisch beim nächsten Seitenaufruf erneut gesendet.`;
 
             const timestring = d.getUTCHours() + ':' + d.getUTCMinutes();
             return timestring;
+        },
+
+        /**
+         * example text if the user has arrived or is leaving
+         * necessary for the translation function
+         */
+        eventArrivedOrLeave: function() {
+            return (this.isHere == 1 ? this.$t('form.arrived') : this.$t('form.left'));
         }
     }
 }
