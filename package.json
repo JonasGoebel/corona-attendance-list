@@ -20,8 +20,10 @@
     "register-service-worker": "^1.5.2",
     "vue": "^2.6.6",
     "vue-flatpickr-component": "^8.1.1",
+    "vue-i18n": "^8.21.0",
     "vue-lazyload": "^1.2.6",
     "vue-router": "^3.0.2",
+    "vue-translator": "^0.9.3",
     "vue2-transitions": "^0.2.3"
   },
   "devDependencies": {
