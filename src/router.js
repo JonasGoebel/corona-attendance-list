@@ -6,7 +6,7 @@ import Components from "./views/Components.vue";
 import Form from "./views/Form.vue";
 import Background from "./views/Background.vue";
 import Instructions from "./views/Instructions.vue";
-import Datenschutz from "./views/Datenschutz.vue";
+import Privacy from "./views/Privacy.vue";
 
 Vue.use(Router);
 
@@ -41,10 +41,10 @@ export default new Router({
       }
     },
     {
-      path: "/datenschutz",
-      name: "datenschutz",
+      path: "/privacy",
+      name: "privacy",
       components: {
-        default: Datenschutz,
+        default: Privacy,
       }
     }
   ],
