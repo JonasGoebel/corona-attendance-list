@@ -1,5 +1,5 @@
 <template>
     <div>
-        <h4>Insert your own privacy policy here</h4>
+        <h4>{{ $t("privacy.insertPolicy") }}</h4>
     </div>
 </template>

@@ -10,5 +10,9 @@
       "eventPreview": "{firstName} {lastName} {eventArrivedOrLeave} the event at {date} on {time}.",
       "sendEvent": "send event",
       "errCouldNotBeSent": "The event could not be sent.\nPlease try again later.\n\nThe event will be automatically sent on the next app start."
+  },
+
+  "privacy": {
+    "insertPolicy": "Insert your own privacy policy here"
   }
 }
