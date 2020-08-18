@@ -15,7 +15,7 @@
                     <div class="col px-0">
                         <div class="row">
                             <div class="col-lg-6">
-                                <h1 class="display-3  text-white">Weiersbach Corona-App</h1>
+                                <h1 class="display-3  text-white">{{ process.env.VUE_APP_NAME }}</h1>
                                 <h2 class="text-white">Anleitung</h2>
                             </div>
                         </div>
