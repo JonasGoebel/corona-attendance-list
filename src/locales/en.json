@@ -14,5 +14,29 @@
 
   "privacy": {
     "insertPolicy": "Insert your own privacy policy here"
+  },
+
+  "instructions": {
+    "instructions": "Instructions",
+    "enterData": "enter Data",
+    "enterDataDesc": "Enter your personal data. You only need to enter the same data as on the \"paper attendance list\"",
+    "enterTime": "enter Time",
+    "enterTimeDesc": "Whenever you arrive at or leave the event, you'll just need to open the app and press on {arrive} or {leave} and then {sendEvent}.",
+    "enterTimeDescAdd": "The current time will automatically be used when the event is sent.",
+    "repeat": "repeat",
+    "repeatDesc": "The app saves the data you entered. From now on you'll only need to press {arrive} or {leave} and then {sendEvent}.",
+    "connectionProblems": "Connection problems?",
+    "connectionProblemsDesc": "Once you've downloaded the app, you can still use the app with low bandwith or no internet connection.",
+    "connectionProblemsDescB": "Events you've entered will be saved and automatically sent at the app start. So you can log the time at a place with no internet connection and send it just by starting the app when your inside your home WiFi.",
+    "hint": "Hint",
+    "connectionProblemsDescHint": "You'll get a message when the events are sent. So klick on {sendEvent} and wait until the message appears.",
+    "go": "Let's go",
+    "goDesc": "Klick here to start using the app:",
+    "questions": "Any questions?",
+    "questionsDesc": "Anything left unclear? Feel free to ask!",
+    "administration": "Administration",
+    "administrationDesc": "Event-Administration-Login:",
+    "personalSite": "Website",
+    "personalSiteDesc": "My personal site is here:"
   }
 }

@@ -14,5 +14,29 @@
 
   "privacy": {
     "insertPolicy": "Fügen Sie Ihre Datenschutzerklärung hier hinzu."
+  },
+
+  "instructions": {
+    "instructions": "",
+    "enterData": "Daten eingeben",
+    "enterDataDesc": "Gib deine persönlichen Daten ein. Es werden die gleichen Daten wie auf \"dem Papierzettel\" benötigt. ",
+    "enterTime": "Zeiten eintragen",
+    "enterTimeDesc": "Immer, wenn Sie das Event betreten oder oder verlassen, öffnen Sie kurz die App, drücken auf {arrive} oder {leave} und danach {sendEvent}.",
+    "enterTimeDescAdd": "Es wird automatisch die aktuelle Uhrzeit als Zeit gesendet.",
+    "repeat": "Wiederholen",
+    "repeatDesc": "Die App speichert deine eingetragenen Daten, du musst ab jetzt nur noch {arrive} oder {leave} und danach {sendEvent} drücken.",
+    "connectionProblems": "Internetprobleme?",
+    "connectionProblemsDesc": "Falls du nur schlechtes / kein Internet haben solltest, kannst du die App trotzdem nutzen.",
+    "connectionProblemsDescB": "Eingaben werden gespeichert und beim App-Start automatisch gesendet. Du kannst also z.B. die Daten am Weihersbach-Gelände eintragen und Zuhause senden, indem du dort die App öffnest.",
+    "hint": "Hinweis",
+    "connectionProblemsDescHint": "Du bekommst eine Nachricht, sobald die Einträge versendet wurden.",
+    "go": "Los gehts",
+    "goDesc": "Klicke hier, um mit der App loszulegen: ",
+    "questions": "Noch Fragen?",
+    "questionsDesc": "Ist noch etwas unklar? Fragen Sie mich einfach!",
+    "administration": "Administration",
+    "administrationDesc": "Event-Administration-Login:",
+    "personalSite": "Website",
+    "personalSiteDesc": "Meine persönliche Website ist hier:"
   }
 }

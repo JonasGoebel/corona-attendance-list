@@ -15,8 +15,8 @@
                     <div class="col px-0">
                         <div class="row">
                             <div class="col-lg-6">
-                                <h1 class="display-3  text-white">{{ process.env.VUE_APP_NAME }}</h1>
-                                <h2 class="text-white">Anleitung</h2>
+                                <h1 class="display-3  text-white">{{ appName }}</h1>
+                                <h2 class="text-white">{{ $t("instructions.instructions") }}</h2>
                             </div>
                         </div>
                     </div>
@@ -33,9 +33,9 @@
                                 <card class="border-0" hover shadow body-classes="py-5">
                                     <h6 style="font-size: 25px;">1</h6>
 
-                                    <h6 class="text-primary text-uppercase">Daten eingeben</h6>
+                                    <h6 class="text-primary text-uppercase">{{ $t("instructions.enterData") }}</h6>
                                     <p class="description mt-3">
-                                        Gib deine persönlichen Daten ein. Es werden die gleichen Daten wie auf "dem Zettel" benötigt.
+                                        {{ $t("instructions.enterDataDesc") }}
                                     </p>
                                 </card>
                             </div>
@@ -44,12 +44,10 @@
                                 <card class="border-0" hover shadow body-classes="py-5">
                                     <h6 style="font-size: 25px;">2</h6>
                                     
-                                    <h6 class="text-warning text-uppercase">Zeiten eintragen</h6>
+                                    <h6 class="text-warning text-uppercase">{{ $t("instructions.enterTime") }}</h6>
+                                    <p class="description mt-3" v-html="createEnterTimeDesc"></p>
                                     <p class="description mt-3">
-                                        Wenn du zur Weiersbach kommst oder gehst, öffnest du kurz die App, drückst auf <span style="color: #27ae60">"KOMMEN"</span> oder <span style="color: #e74c3c">"GEHEN"</span> und danach <span style="color: #2980b9">"SENDEN"</span>.
-                                    </p>
-                                    <p class="description mt-3">
-                                        Es wird automatisch die aktuelle Uhrzeit als Zeit gesendet.
+                                        {{ $t("instructions.enterTimeDescAdd") }}
                                     </p>
                                 </card>
                             </div>
@@ -58,13 +56,11 @@
                                 <card class="border-0" hover shadow body-classes="py-5">
                                     <h6 style="font-size: 25px;">3</h6>
                                     
-                                    <h6 class="text-success text-uppercase">Wiederholen</h6>
+                                    <h6 class="text-success text-uppercase">{{ $t("instructions.repeat") }}</h6>
                                     <p class="description mt-3">
                                         
                                     </p>
-                                    <p class="description mt-3">
-                                        Die App speichert deine eingetragenen Daten, du musst ab jetzt nur noch <span style="color: #27ae60">"KOMMEN"</span> oder <span style="color: #e74c3c">"GEHEN"</span> und danach <span style="color: #2980b9">"SENDEN"</span> drücken.
-                                    </p>
+                                    <p class="description mt-3" v-html="createRepeatDesc"></p>
                                 </card>
                             </div>
 
@@ -72,15 +68,15 @@
                                 <card class="border-0" hover shadow body-classes="py-5">
                                     <icon name="ni ni-send" type="warning" rounded class="mb-4">
                                     </icon>
-                                    <h6 class="text-warning text-uppercase">Internetprobleme?</h6>
+                                    <h6 class="text-warning text-uppercase">{{ $t("instructions.connectionProblems") }}</h6>
                                         <p class="description mt-3">
-                                            Falls du nur schlechtes / kein Internet haben solltest, kannst du die App trotzdem nutzen.
+                                            {{ $t("instructions.connectionProblemsDesc") }}
                                         </p>
                                         <p class="description mt-3">
-                                            Eingaben werden gespeichert und beim App-Start automatisch gesendet. Du kannst also z.B. die Daten am Weihersbach-Gelände eintragen und Zuhause senden, indem du dort die App öffnest.
+                                            {{ $t("instructions.connectionProblemsDescB") }}
                                         </p>
                                         <p class="description mt-3">
-                                            <strong>Hinweis:</strong> Du bekommst eine Nachricht, sobald die Einträge versendet wurden.
+                                            <strong>{{ $t("instructions.hint") }}:</strong> {{ $t("instructions.connectionProblemsDescHint") }}
                                         </p>
                                 </card>
                             </div>
@@ -89,12 +85,12 @@
                                 <card class="border-0" hover shadow body-classes="py-5">
                                     <icon name="ni ni-check-bold" type="success" rounded class="mb-4">
                                     </icon>
-                                    <h6 class="text-success text-uppercase">Los gehts!</h6>
+                                    <h6 class="text-success text-uppercase">{{ $t("instructions.go") }}</h6>
                                     <p class="description mt-3">
-                                        Klicke hier, um mit der App loszulegen:
+                                        {{ $t("instructions.goDesc") }}
                                     </p>
                                     <base-button tag="a" href="/" type="success" class="mt-4">
-                                        Los gehts
+                                        {{ $t("instructions.go") }}
                                     </base-button>
                                 </card>
                             </div>
@@ -114,10 +110,10 @@
             <div class="container pt-lg pb-300">
                 <div class="row text-center justify-content-center">
                     <div class="col-lg-10">
-                        <h2 class="display-3 text-white">Noch Fragen?</h2>
-                        <p class="lead text-white">Ist noch etwas unklar? Frag mich einfach!</p>
+                        <h2 class="display-3 text-white">{{ $t("instructions.questions") }}</h2>
+                        <p class="lead text-white">{{ $t("instructions.questionsDesc") }}</p>
                         <br><br>
-                        <p class="lead text-white">~ Jonas</p>
+                        <p class="lead text-white">{{ contact }}</p>
                     </div>
                 </div>
 
@@ -128,23 +124,15 @@
                 <div class="row row-grid mt-5">
                     <div class="col-lg-4">
                         <icon name="ni ni-settings" size="lg" gradient="white" shadow round color="primary"></icon>
-                        <h5 class="text-white mt-3">Administration</h5>
-                        <p class="text-white mt-3">Weiersbach-Administrations-Login: <a href="https://weiersbachapi.goebel.app">https://weiersbachapi.goebel.app</a></p>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <icon name="ni ni-email-83" size="lg" gradient="white" shadow round color="primary"></icon>
-                        <h5 class="text-white mt-3">Mail</h5>
-                        <p class="text-white mt-3">
-                            <a href="mailto://weiersbach@jonasgoebel.net">weiersbach@jonasgoebel.net</a>
-                            </p>
+                        <h5 class="text-white mt-3">{{ $t("instructions.administration") }}</h5>
+                        <p class="text-white mt-3">{{ $t("instructions.administrationDesc") }} <a :href="serverURL">{{ serverURL }}</a></p>
                     </div>
 
                     <div class="col-lg-4">
                         <icon name="ni ni-planet" size="lg" gradient="white" shadow round color="primary"></icon>
-                        <h5 class="text-white mt-3">Website</h5>
+                        <h5 class="text-white mt-3">{{ $t("instructions.personalSite") }}</h5>
                         <p class="text-white mt-3">
-                            Meine perönliche Website ist hier: <a href="https://jonasgoebel.net">https://jonasgoebel.net</a></p>
+                            {{ $t("instructions.personalSiteDesc") }} <a href="https://jonasgoebel.net">https://jonasgoebel.net</a></p>
                     </div>
                 </div>
             </div>
@@ -154,10 +142,37 @@
 
 <script>
 export default {
-  name: "home",
-  components: {},
-  mounted()  {
-      localStorage.instructionsRead = true;
-  }
+    name: "home",
+    components: {},
+    data: () => ({
+        appName: process.env.VUE_APP_NAME,
+        contact: process.env.VUE_APP_HELP_CONTACT,
+        serverURL: process.env.VUE_APP_SERVER_URL
+    }),
+
+    mounted()  {
+        localStorage.instructionsRead = true;
+    },
+
+    computed: {
+        /**
+         * color the buttons in the description with the right translation
+         */
+        createEnterTimeDesc: function() {
+            return this.$t("instructions.enterTimeDesc", {
+                arrive: '<span style="color: #27ae60">' + this.$t('form.arrive') + '</span>',
+                leave: '<span style="color: #e74c3c">' + this.$t('form.leave') + '</span>',
+                sendEvent: '<span style="color: #2980b9">' + this.$t('form.sendEvent') + '</span>',
+            })
+        },
+
+        createRepeatDesc: function() {
+            return this.$t("instructions.repeatDesc", {
+                arrive: '<span style="color: #27ae60">' + this.$t('form.arrive') + '</span>',
+                leave: '<span style="color: #e74c3c">' + this.$t('form.leave') + '</span>',
+                sendEvent: '<span style="color: #2980b9">' + this.$t('form.sendEvent') + '</span>',
+            })
+        }
+    }
 };
 </script>
